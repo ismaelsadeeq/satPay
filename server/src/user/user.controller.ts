@@ -3,7 +3,6 @@ import {Controller, HttpCode, HttpStatus,  Get, Query, Request } from '@nestjs/c
 import { UserService } from './user.service';
 import { ResponseHandlerService } from 'src/response-handler/response-handler.service';
 import { Meta } from 'src/response-handler/interface/response.handler.interface';
-import { Public } from 'src/auth/public.decorator';
 
 @Controller('api/v1/users')
 export class UserController {
