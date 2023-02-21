@@ -7,7 +7,7 @@ import { ResponseHandlerModule } from 'src/response-handler/response-handler.mod
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local-strategy';
 import { JwtModule } from '@nestjs/jwt';
-import { User, UserSchema } from 'src/user/user.schema';
+import { User, UserSchema } from 'src/schemas/user.schema';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule } from '@nestjs/config';
 
