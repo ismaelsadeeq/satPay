@@ -15,9 +15,10 @@ export class AuthController {
   @Public()
   @Post('signup')
   @HttpCode(HttpStatus.CREATED)
-  signup(@Body() signupRequest: SignupRequest) {
+  signup(@Body() signupRequest: SignupRequest): Promise<any>{
     return this.authService.signup(signupRequest);
   }
+  
   @Public()
   @Post('login')
   async login(@Body() data:SignInRequest) : Promise<any>{
