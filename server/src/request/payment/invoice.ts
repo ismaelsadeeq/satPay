@@ -13,3 +13,10 @@ export class createInvoice {
   expiryTime:string
   
 }
+
+export class widthrawData {
+
+  @IsNotEmpty()
+  @IsString()
+  paymentReq:string
+}
