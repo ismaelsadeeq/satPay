@@ -4,12 +4,15 @@ import { Model } from 'mongoose';
 
 import { UserDocument, User } from '../schemas/user.schema';
 import { SignupRequest } from '../request';
+import { Account, AccountDocument } from 'src/schemas/account.schema';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name)
     private userModel: Model<UserDocument>,
+    @InjectModel(Account.name)
+    private accountModel:Model<AccountDocument>
   ) {}
 
   public async getUserEntityById(id: string): Promise<any> {
@@ -38,6 +41,8 @@ export class UserService {
       newUser.email = signupRequest.email;
       newUser.business = signupRequest.business;
       const savedUser = await newUser.save();
+      const account = new this.accountModel({balance:0,user:savedUser})
+      await account.save();
       return {};
     } catch (e) {
       throw new BadRequestException(e.message);
