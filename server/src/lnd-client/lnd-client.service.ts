@@ -3,11 +3,8 @@ import createLnRpc, {LnRpc} from '@radar/lnrpc';
 @Injectable()
 export class LndClientService {
   node:LnRpc;
-  constructor(
-   
-  ) {
-  }
-  async startNode() {
+  public static instance:LndClientService = new LndClientService();
+  async createConnection() {
     try {
       this.node = await createLnRpc({
         server: process.env.LND_GRPC_URL,
@@ -18,7 +15,5 @@ export class LndClientService {
       throw new Error(error);
     }
   }
-
- 
 }
 
