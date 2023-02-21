@@ -38,7 +38,6 @@ export class UserService {
       newUser.email = signupRequest.email;
       newUser.business = signupRequest.business;
       const savedUser = await newUser.save();
-      const r = await newUser.save();
       return {};
     } catch (e) {
       throw new BadRequestException(e.message);
