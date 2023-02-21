@@ -18,8 +18,8 @@ import { PaymentModule } from './payment/payment.module';
     MongooseModule.forRoot(process.env.MONGO_STRING || ''),
     AuthModule,
     UserModule,
+    PaymentModule,
     LndClientModule,
-    PaymentModule
   ],
   controllers: [AppController],
   providers: [AppService,
