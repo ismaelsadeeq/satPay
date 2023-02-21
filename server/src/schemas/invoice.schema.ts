@@ -4,10 +4,10 @@ import {Document,  Schema as MSchema} from 'mongoose';
 import { User } from './user.schema';
 
 
-export type InvoiceDocument = Invoice & Document;
+export type DBInvoiceDocument = DBInvoice & Document;
 
 @Schema({timestamps:true})
-export class Invoice {
+export class DBInvoice {
  
 
   @Prop({required:true})
@@ -16,15 +16,15 @@ export class Invoice {
 
   @Prop({})
   @IsOptional()
-  purpose:number
+  purpose:string
 
   @Prop({required:true})
-  @IsDate()
-  expiryTime:Date
+  @IsString()
+  expirySeconds:string
 
   @Prop({required:true})
   @IsBoolean()
-  status:number
+  status:boolean
 
 
   @Prop({required:true})
@@ -36,4 +36,4 @@ export class Invoice {
   user:User
 
 }
-export const InvoiceSchema = SchemaFactory.createForClass(Invoice);
+export const DBInvoiceSchema = SchemaFactory.createForClass(DBInvoice);
