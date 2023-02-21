@@ -1,8 +1,8 @@
-import {Prop,Schema} from '@nestjs/mongoose';
+import {Prop,Schema, SchemaFactory} from '@nestjs/mongoose';
 import {  IsNumber, IsString } from 'class-validator';
 import {Document,  Schema as MSchema} from 'mongoose';
 import { User } from './user.schema';
-import { Widthrawals } from './withdrawals.schema';
+import { Widthrawal } from './withdrawal.schema';
 
 
 export type ReversalDocument = Reversal & Document;
@@ -27,9 +27,11 @@ export class Reversal {
   user:User
 
 
-  @Prop({ type: MSchema.Types.ObjectId, ref:'Widthrawals',required:true})
+  @Prop({ type: MSchema.Types.ObjectId, ref:'Widthrawal',required:true})
   @IsNumber()
-  widthrawal:Widthrawals
+  widthrawal:Widthrawal
 
 
 }
+
+export const ReversalSchema = SchemaFactory.createForClass(Reversal);

@@ -1,4 +1,4 @@
-import {Prop,Schema} from '@nestjs/mongoose';
+import {Prop,Schema, SchemaFactory} from '@nestjs/mongoose';
 import {  IsNumber } from 'class-validator';
 import {Document,  Schema as MSchema} from 'mongoose';
 import { User } from './user.schema';
@@ -19,3 +19,5 @@ export class Account {
   user:User
 
 }
+
+export const AccountSchema = SchemaFactory.createForClass(Account);

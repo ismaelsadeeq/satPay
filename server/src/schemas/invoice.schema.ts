@@ -1,4 +1,4 @@
-import {Prop,Schema} from '@nestjs/mongoose';
+import {Prop,Schema, SchemaFactory} from '@nestjs/mongoose';
 import { IsBoolean, IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
 import {Document,  Schema as MSchema} from 'mongoose';
 import { User } from './user.schema';
@@ -36,3 +36,4 @@ export class Invoice {
   user:User
 
 }
+export const InvoiceSchema = SchemaFactory.createForClass(Invoice);

@@ -1,13 +1,13 @@
-import {Prop,Schema} from '@nestjs/mongoose';
+import {Prop,Schema, SchemaFactory} from '@nestjs/mongoose';
 import {  IsNumber, IsString } from 'class-validator';
 import {Document,  Schema as MSchema} from 'mongoose';
 import { User } from './user.schema';
 
 
-export type WidthrawalsDocument = Widthrawals & Document;
+export type WidthrawalDocument = Widthrawal & Document;
 
 @Schema({timestamps:true})
-export class Widthrawals {
+export class Widthrawal {
  
   @Prop({required:true})
   @IsNumber()
@@ -26,3 +26,4 @@ export class Widthrawals {
   user:User
 
 }
+export const WidthrawalSchema = SchemaFactory.createForClass(Widthrawal);
