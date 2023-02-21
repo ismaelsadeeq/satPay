@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { LndClientModule } from './lnd-client/lnd-client.module';
 import { PaymentModule } from './payment/payment.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { PaymentModule } from './payment/payment.module';
       isGlobal:true
     }),
     MongooseModule.forRoot(process.env.MONGO_STRING || ''),
+    ScheduleModule.forRoot(),
     AuthModule,
     UserModule,
     PaymentModule,
