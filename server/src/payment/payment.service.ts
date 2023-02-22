@@ -125,7 +125,15 @@ export class PaymentService {
 
       await account.updateOne({balance:account.balance - parseInt(decodedInvoice.numMsat)})
 
-      const widthraw:SendResponse = await LndClientService.instance.node.sendPaymentSync({paymentRequest:widthrawData.paymentReq})
+      let widthraw:SendResponse;
+      
+      try {
+        widthraw = await LndClientService.instance.node.sendPaymentSync({paymentRequest:widthrawData.paymentReq})
+      } catch (error) {
+        Logger.log(error)
+        account = await this.accountModel.findOne({user:user});
+        await account.updateOne({balance:account.balance + parseInt(decodedInvoice.numMsat)})
+      }
       
       if(widthraw.paymentError){
         account = await this.accountModel.findOne({user:user});
