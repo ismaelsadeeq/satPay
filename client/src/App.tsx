@@ -1,11 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Router from './routes';
+import { ThemeProvider } from '@emotion/react';
+import { myTheme } from './styles/Theme';
 
 function App() {
   return (
-    <Router />
+    <ThemeProvider theme={myTheme} >
+      <Router />
+    </ThemeProvider>
+    
   );
 }
 
