@@ -1,7 +1,6 @@
 import { Navigate,useRoutes } from "react-router-dom";
 import  Dashboard  from './Components/Dashboard/Dashboard';
 import Login from './Components/Authentication/Login';
-import Register from "./Components/Authentication/Register";
 
 
 export default function Router(){
@@ -13,12 +12,8 @@ export default function Router(){
       index:true
     },
     {
-      path:'/login',
+      path:'/auth/:route',
       element:<Login />
-    },
-    {
-      path:'/register',
-      element:<Register />
     },
     {
       path:"*",
