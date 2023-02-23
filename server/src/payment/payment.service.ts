@@ -11,9 +11,11 @@ import { Meta } from 'src/response-handler/interface/response.handler.interface'
 import { UserDocument } from 'src/schemas/user.schema';
 import { Account, AccountDocument } from 'src/schemas/account.schema';
 import { Widthrawal, WidthrawalDocument } from 'src/schemas/withdrawal.schema';
+import { SocketGateway } from 'src/socket-gateway/socket-gateway';
 
 
 @Injectable()
+
 export class PaymentService {
   
   constructor(
@@ -24,7 +26,8 @@ export class PaymentService {
     @InjectModel(Widthrawal.name)
     private withrawalModel:Model<WidthrawalDocument>,
     private readonly userService:UserService,
-    private readonly responseHandler:ResponseHandlerService
+    private readonly responseHandler:ResponseHandlerService,
+    private socketGateway:SocketGateway
   ){
   }
 
@@ -219,6 +222,7 @@ export class PaymentService {
       await invoices[i].updateOne({status:true})
       const account:AccountDocument = await this.accountModel.findOne({user:invoices[i].user})
       await account.updateOne({balance: account.balance + invoices[i].amount})
+      this.socketGateway.server.emit('payment',invoices[i])
     }
   }
   async checkIfInvoiceExpiry(invoices:Array<any>){
