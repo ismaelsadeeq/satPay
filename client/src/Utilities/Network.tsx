@@ -12,7 +12,7 @@ export const getRequest =  async (method:string):Promise<any> => {
 
 export const postRequest =  async (method:string,data:any):Promise<any> => {
   try {
-    return (await axios.post(method,data)).data.data;
+    return (await axios.post(method,data)).data;
   }catch(err:any){
     return err
   }
