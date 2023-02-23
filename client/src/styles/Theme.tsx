@@ -43,9 +43,9 @@ const PRIMARY = {
 };
 
 const SECONDARY = {
-  lighter: '#D6E4FF',
+  lighter: '#aable',
   light: '#84A9FF',
-  main: '#3366FF',
+  main: '#aable',
   dark: '#1939B7',
   darker: '#091A7A',
   contrastText: '#fff',
@@ -121,7 +121,7 @@ const color = palette.grey[500];
 const transparent1 = alpha(color, 0.2);
 const transparent2 = alpha(color, 0.14);
 const transparent3 = alpha(color, 0.12);
-// -
+// -3366FF
 export const myTheme = createTheme(
   {
     palette:palette,
@@ -158,7 +158,6 @@ export const myTheme = createTheme(
       fontWeightMedium: 600,
       fontWeightBold: 700,
       h1: {
-        color:'#fff',
         fontWeight: 800,
         lineHeight: 80 / 64,
         fontSize: pxToRem(40),
@@ -183,7 +182,6 @@ export const myTheme = createTheme(
         ...responsiveFontSizes({ sm: 20, md: 24, lg: 24 }),
       },
       h5: {
-        color:"#fff",
         fontWeight: 700,
         lineHeight: 1.5,
         fontSize: pxToRem(18),
@@ -208,7 +206,6 @@ export const myTheme = createTheme(
       body1: {
         lineHeight: 1.5,
         fontSize: pxToRem(16),
-        color:'#fff',
 
       },
       body2: {
@@ -230,7 +227,6 @@ export const myTheme = createTheme(
         lineHeight: 24 / 14,
         fontSize: pxToRem(14),
         textTransform: 'capitalize',
-        color:"white"
       }
     }
   },
