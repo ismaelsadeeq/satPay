@@ -8,6 +8,7 @@ import { Account, AccountSchema } from 'src/schemas/account.schema';
 import { Widthrawal, WidthrawalSchema } from 'src/schemas/withdrawal.schema';
 import { UserModule } from 'src/user/user.module';
 import { ResponseHandlerModule } from 'src/response-handler/response-handler.module';
+import { SocketGatewayModule } from 'src/socket-gateway/socket-gateway.module';
 
 @Module({
   imports:[
@@ -18,7 +19,9 @@ import { ResponseHandlerModule } from 'src/response-handler/response-handler.mod
       {name:Widthrawal.name,schema:WidthrawalSchema},
     ]),
     UserModule,
-    ResponseHandlerModule
+    ResponseHandlerModule,
+    SocketGatewayModule,
+    
   ],
   providers: [PaymentService],
   controllers: [PaymentController]
