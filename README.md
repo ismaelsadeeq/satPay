@@ -33,7 +33,7 @@ This project is built during [Qala](https://qala.dev) bitcoin development traini
 
 ## Stay in touch
 
-- Twitter 
+Twitter 
 - [@Qala](https://twitter.com/QalaAfrica)
 - [@Abubakar Sadiq Ismail](https://twitter.com/sadeeq_ismaela)
 
