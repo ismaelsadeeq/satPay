@@ -1,5 +1,5 @@
 
-import {  Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {  Body, Controller, Get, HttpCode, HttpStatus, Post,Query } from '@nestjs/common';
 import { SignupRequest } from 'src/request';
 import { AuthService } from './auth.service';
 import { SignInRequest } from '../request/auth/login-request.model';
@@ -25,4 +25,15 @@ export class AuthController {
     return await this.authService.login(data)
   }
 
+  @Public()
+  @Post('lnurl-login')
+  async lnurlLogin() : Promise<any>{
+    return await this.authService.lnurlLogin()
+  }
+
+  @Public()
+  @Get('lnurl')
+  async lnurlHandleLogin(@Query() query) : Promise<any>{
+    return await this.authService.pseudoLogin(query)
+  }
 }
