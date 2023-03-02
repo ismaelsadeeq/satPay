@@ -10,7 +10,7 @@ export class User {
 
   @IsOptional()
   @IsEmail()
-  @Prop({ unique:false,required: true  })
+  @Prop({ })
   email?: string;
 
 
@@ -18,14 +18,17 @@ export class User {
   @Prop({ required: true })
   passwordHash: string;
   
+  @IsOptional()
   @MaxLength(20)
   @Prop({})
-  firstName: string;
+  firstName?: string;
 
+  @IsOptional()
   @MaxLength(40)
   @Prop({})
-  lastName: string;
+  lastName?: string;
 
+  @IsOptional()
   @MaxLength(40)
   @Prop({})
   middleName?: string;
