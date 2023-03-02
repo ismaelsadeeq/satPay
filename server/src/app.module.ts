@@ -10,6 +10,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { LndClientModule } from './lnd-client/lnd-client.module';
 import { PaymentModule } from './payment/payment.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { LnurlModule } from './lnurl/lnurl.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     UserModule,
     PaymentModule,
     LndClientModule,
+    LnurlModule
   ],
   controllers: [AppController],
   providers: [AppService,
