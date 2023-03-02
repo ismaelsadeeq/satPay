@@ -52,3 +52,28 @@ export class SignupRequest {
   @MinLength(8)
   password: string;
 }
+
+
+
+export class updateUserRequest {
+
+
+  @IsNotEmpty()
+  @Matches(RegExp('^[a-zA-Z0-9\\-]+$'))
+  @MaxLength(20)
+  firstName?: string;
+
+  @IsNotEmpty()
+  @Matches(RegExp('^[a-zA-Z0-9\\-]+$'))
+  @MaxLength(20)
+  lastName?: string;
+
+  @IsOptional()
+  @MaxLength(20)
+  middleName?: string;
+
+  @IsNotEmpty()
+  @Matches(RegExp('^[a-zA-Z0-9\\-]+$'))
+  @MaxLength(20)
+  business?:string
+}
