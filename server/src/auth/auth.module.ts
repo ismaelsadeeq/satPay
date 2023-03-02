@@ -10,6 +10,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { User, UserSchema } from 'src/schemas/user.schema';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule } from '@nestjs/config';
+import { LnurlModule } from 'src/lnurl/lnurl.module';
+import { SocketGatewayModule } from 'src/socket-gateway/socket-gateway.module';
 
 @Module({
   imports:[
@@ -24,7 +26,9 @@ import { ConfigModule } from '@nestjs/config';
     PassportModule,
     JwtModule.register({
       secret:process.env.SECRET
-    })
+    }),
+    LnurlModule,
+    SocketGatewayModule
   ],
   providers: [AuthService,LocalStrategy,JwtStrategy],
   controllers: [AuthController]
