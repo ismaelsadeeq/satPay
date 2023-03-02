@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal:true
     }),
   ],
+  exports:[LnurlService],
   providers: [LnurlService]
 })
 export class LnurlModule {}
