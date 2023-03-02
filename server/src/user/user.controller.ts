@@ -1,8 +1,9 @@
-import {Controller, HttpCode, HttpStatus,  Get, Query, Request } from '@nestjs/common';
+import {Controller, HttpCode, HttpStatus,  Get, Body, Request, Put } from '@nestjs/common';
 
 import { UserService } from './user.service';
 import { ResponseHandlerService } from 'src/response-handler/response-handler.service';
 import { Meta } from 'src/response-handler/interface/response.handler.interface';
+import { updateUserRequest } from 'src/request';
 
 @Controller('api/v1/users')
 export class UserController {
@@ -22,5 +23,10 @@ export class UserController {
     }
     return this.responseHandler.responseBody(usr,response);
 
+  }
+  @Put('update')
+  @HttpCode(HttpStatus.OK)
+  async updateUser(@Body() data:updateUserRequest,@Request() req):Promise<any> {
+    return this.userService.updateUser(req.user.id,data)
   }
 }
