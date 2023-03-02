@@ -6,6 +6,8 @@ import { ResponseHandlerService } from 'src/response-handler/response-handler.se
 import {  SignupRequest } from 'src/request';
 import { JwtService } from '@nestjs/jwt';
 import { Meta } from 'src/response-handler/interface/response.handler.interface';
+import { LnurlService } from 'src/lnurl/lnurl.service';
+import { SocketGateway } from 'src/socket-gateway/socket-gateway';
 
 
 @Injectable()
@@ -13,7 +15,9 @@ export class AuthService {
   constructor(
     private readonly userService:UserService,
     private responseHandler:ResponseHandlerService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private lnurlService:LnurlService,
+    private socketGateWay:SocketGateway
   ){
   }
   
@@ -76,6 +80,67 @@ export class AuthService {
           token: this.jwtService.sign(payload),
           user: user,
         },
+        response
+      )
+    }catch(e){
+      Logger.log(e)
+      const response:Meta = {
+        status:false,
+        message:"failed",
+        pagination:undefined
+      }
+      return this.responseHandler.responseBody({}, response);
+    }
+  
+  
+  }
+  async lnurlLogin() {
+    try {
+      const result = await this.lnurlService.lnurlServer.generateNewUrl("login")
+      const response:Meta = {
+        status:true,
+        message:"success",
+        pagination:undefined
+      }
+      return this.responseHandler.responseBody(
+        result,
+        response
+      )
+    }catch(e){
+      Logger.log(e)
+      const response:Meta = {
+        status:false,
+        message:"failed",
+        pagination:undefined
+      }
+      return this.responseHandler.responseBody({}, response);
+    }
+  }
+  async pseudoLogin(query:any) {
+    try {
+      if (query.key) {
+        const key: string = String(query.key);
+        const user  = await this.userService.createLnUrlUser(await bcrypt.hash(query.key, 10))
+        const payload = { username: user.email, sub: user.id, state: 'base'};
+        const token:string =  this.jwtService.sign(payload);
+        this.socketGateWay.server.emit('bearer', { token });
+        const response:Meta = {
+          status:true,
+          message:"success",
+          pagination:undefined
+        }
+        return this.responseHandler.responseBody(
+          key,
+          response
+        )
+      }
+      const response:Meta = {
+        status:false,
+        message:"unsuccesssful ln url login",
+        pagination:undefined
+      }
+      return this.responseHandler.responseBody(
+        {},
         response
       )
     }catch(e){
