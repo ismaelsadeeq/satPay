@@ -24,7 +24,7 @@ A Web server that enables businesses to create bitcoin lightning invoices for a 
 
 
 Server application is inside the server folder,
-[Follow the installation guide in the folder readme for seamless installation](https://github.com/ismaelsadeeq/block-explorer/tree/main/client#installation-guide)
+[Follow the installation guide in the folder readme for seamless installation](https://github.com/ismaelsadeeq/satPay/tree/main/server#satpay-nestjs-server)
 
 
 
